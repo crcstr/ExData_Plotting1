@@ -23,10 +23,10 @@ d <- transform(d, Date = as.Date(Date, "%d/%m/%Y"),
 ## Subset
 d <- subset(d, Date %in% as.Date(c("2007/02/01", "2007/02/02")))
 
-## Plot 1
-png(filename = "plot1.png", width = 480, height = 480)
-hist(d$Global_active_power,
-     col = "red", border = "black",
-     main = "Global Active Power",
-     xlab = "Global Active Power (kilowatts)")
+## Plot 2
+png(filename = "plot2.png", width = 480, height = 480)
+with(d, plot(datetime, Global_active_power,
+             type = "l", col = "black",
+             ylab = "Global Active Power (kilowatts)",
+             xlab = ""))
 dev.off()

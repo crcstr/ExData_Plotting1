@@ -23,10 +23,19 @@ d <- transform(d, Date = as.Date(Date, "%d/%m/%Y"),
 ## Subset
 d <- subset(d, Date %in% as.Date(c("2007/02/01", "2007/02/02")))
 
-## Plot 1
-png(filename = "plot1.png", width = 480, height = 480)
-hist(d$Global_active_power,
-     col = "red", border = "black",
-     main = "Global Active Power",
-     xlab = "Global Active Power (kilowatts)")
+## Plot 3
+png(filename = "plot3.png", width = 480, height = 480)
+with(d, {
+    plot(datetime, Sub_metering_1,
+         type = "l", col = "black",
+         ylab = "Energy Sub Metering",
+         xlab = "")
+    lines(datetime, Sub_metering_2,
+          type = "l", col = "red")
+    lines(datetime, Sub_metering_3,
+          type = "l", col = "blue")
+})
+legend("topright", lty = c(1, 1),
+       col = c("black", "red", "blue"),
+       legend = c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"))
 dev.off()
